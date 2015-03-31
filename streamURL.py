@@ -3,11 +3,10 @@ from gmusicapi import Webclient
 import json
 import requests
 import sys
-import pandas as pd
 import datetime as dt
 requests.packages.urllib3.disable_warnings()
 
-data = pd.read_csv("/home/drew/gpmusic_fixed.csv")
+#data = pd.read_csv("/home/drew/tempo_scripts/gpmusic_fixed.csv")
 
 webapi = Webclient()
 webapi.login('atyourtempo@gmail.com', 'musicatyourspeed')
@@ -41,4 +40,4 @@ pid = api.create_playlist("Tempo: " + dt.datetime.now().strftime("%m-%d-%Y %I:%M
 api.add_songs_to_playlist(pid, guid)
 #print json.dumps(device, indent=4, separators=(',', ': '))
 #print webapi.get_stream_urls(library['storeId'])
-print json.dumps({"streamURL": streamURL, "playlistId": pid}, indent=4, separators=(',', ': '))
+print json.dumps({"streamURL": streamURL, "pid": pid}, indent=4, separators=(',', ': '))
