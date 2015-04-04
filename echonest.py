@@ -7,6 +7,8 @@ library = data[['song_id']].values
 songs = {}
 size = len(library)
 
+sys.stderr = open("log.txt", "w")
+
 for key, value in enumerate(library[0]):
     if songs.get('id') is None:
         songs['id'] = []
@@ -23,6 +25,8 @@ for key, value in data.iteritems():
     else:
         if songs.get(key) is None:
             songs[key] = []
+
+#library = library[1585:]
 
 for i in xrange(len(library)):
     libList = {}
@@ -62,7 +66,7 @@ for i in xrange(len(library)):
 	    songs[key].append(libList[key])
 	else:
 	    songs[key].append("")
-    time.sleep(5)
+    time.sleep(3.2)
 
 size = len(songs['id'])
 

@@ -7,8 +7,8 @@ for i, v in enumerate(clusters):
 
 print json.dumps(randSongs, indent=4, separators=(',', ': '))
 
-#print json.dumps(ret, indent=4, separators=(',', ': '))
+#for i,v in enumerate(allsongs):
+#    if v['title'] == "Alone In Memphis":
+#	print json.dumps(v, indent=4, separators=(',', ': '))
 
-#add usable columns
-#test http://scikit-learn.org/stable/modules/generated/sklearn.cluster.Ward.html#sklearn.cluster.Ward
-#ask from tier 1 then ask from tier 2 (maybe include songs from other cluster in case they don't want the selected cluster)
+#print json.dumps(ret, indent=4, separators=(',', ': '))
