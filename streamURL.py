@@ -16,6 +16,10 @@ logged_in = api.login('atyourtempo@gmail.com', 'musicatyourspeed')
 #library = api.get_all_songs()
 
 guid = sys.argv[1]
+try:
+    action = sys.argv[2]
+except:
+    action = ""
 
 #library = api.get_track_info('Ttk6fmoytroyauv2simicl62hlu')
 #print data[['storeId','id']]
@@ -36,8 +40,11 @@ guid = sys.argv[1]
 
 device = webapi.get_registered_devices()
 streamURL = api.get_stream_url(guid, device[0]['id'][2:])
-pid = api.create_playlist("Tempo: " + dt.datetime.now().strftime("%m-%d-%Y %I:%M:%S%p"))
-api.add_songs_to_playlist(pid, guid)
-#print json.dumps(device, indent=4, separators=(',', ': '))
-#print webapi.get_stream_urls(library['storeId'])
-print json.dumps({"streamURL": streamURL, "pid": pid}, indent=4, separators=(',', ': '))
+if action == "":
+    pid = api.create_playlist("Tempo: " + dt.datetime.now().strftime("%m-%d-%Y %I:%M:%S%p"))
+    api.add_songs_to_playlist(pid, guid)
+    #print json.dumps(device, indent=4, separators=(',', ': '))
+    #print webapi.get_stream_urls(library['storeId'])
+    print json.dumps({"streamURL": streamURL, "pid": pid}, indent=4, separators=(',', ': '))
+else:
+    print json.dumps({"streamURL": streamURL}, indent=4, separators=(',', ': '))
