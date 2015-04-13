@@ -1,15 +1,15 @@
 from gmusicapi import Mobileclient
-from gmusicapi import Webclient
+#from gmusicapi import Webclient
 import json
-import requests
+import requests.packages.urllib3
 import sys
 import datetime as dt
 requests.packages.urllib3.disable_warnings()
 
 #data = pd.read_csv("/home/drew/tempo_scripts/gpmusic_fixed.csv")
 
-webapi = Webclient()
-webapi.login('atyourtempo@gmail.com', 'musicatyourspeed')
+#webapi = Webclient()
+#webapi.login('atyourtempo@gmail.com', 'musicatyourspeed')
 api = Mobileclient()
 logged_in = api.login('atyourtempo@gmail.com', 'musicatyourspeed')
 
@@ -38,8 +38,9 @@ except:
 #print json.dumps(library[len(library)-1], indent=4, separators=(',', ': '))
 #print json.dumps(library, indent=4, separators=(',', ': '))
 
-device = webapi.get_registered_devices()
-streamURL = api.get_stream_url(guid, device[0]['id'][2:])
+#device = webapi.get_registered_devices()
+#streamURL = api.get_stream_url(guid, device[0]['id'][2:])
+streamURL = api.get_stream_url(guid, '320b3128904ea650')
 if action == "":
     pid = api.create_playlist("Tempo: " + dt.datetime.now().strftime("%m-%d-%Y %I:%M:%S%p"))
     api.add_songs_to_playlist(pid, guid)

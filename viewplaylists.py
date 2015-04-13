@@ -3,7 +3,7 @@ import json
 import requests
 import sys
 from clusters2list import *
-import pandas as pd
+#import pandas as pd
 requests.packages.urllib3.disable_warnings()
 api = Mobileclient()
 logged_in = api.login('atyourtempo@gmail.com', 'musicatyourspeed')

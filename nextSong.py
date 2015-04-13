@@ -1,9 +1,10 @@
 from gmusicapi import Mobileclient
-from gmusicapi import Webclient
+#from gmusicapi import Webclient
 import json
-import requests
+import requests.packages.urllib3
 import sys
-from sklearn.cluster import KMeans
+import random
+#from sklearn.cluster import KMeans
 from clusters2list import *
 requests.packages.urllib3.disable_warnings()
 
@@ -13,11 +14,12 @@ cluster = int(sys.argv[3])
 
 songs = []
 for i, v in enumerate(clusters[cluster]):
-    if bpm > float(clusters[cluster][i]['tempo'])*.9 and bpm < float(clusters[cluster][i]['tempo'])*1.1:
+    sbpm = float(clusters[cluster][i]['tempo'])
+    if (bpm >= sbpm-5 and bpm <= sbpm+5) or (bpm*2 >= sbpm-5 and bpm*2 <= sbpm+5) or (bpm/2 >= sbpm-5 and bpm/2 <= sbpm+5):
 	songs.append(clusters[cluster][i])
 
-webapi = Webclient()
-webapi.login('atyourtempo@gmail.com', 'musicatyourspeed')
+#webapi = Webclient()
+#webapi.login('atyourtempo@gmail.com', 'musicatyourspeed')
 api = Mobileclient()
 logged_in = api.login('atyourtempo@gmail.com', 'musicatyourspeed')
 
@@ -41,16 +43,18 @@ for i,v in enumerate(songs):
 try:
 	guid = song['id']
 except:
-	library = api.get_all_songs()
-	errSong = library[len(library) - 7]
+	#library = api.get_all_songs()
+	errSong = clusters[cluster][random.randint(0, len(clusters[i])-1)]
 	guid = errSong['id']
 
-device = webapi.get_registered_devices()
-streamURL = api.get_stream_url(guid, device[0]['id'][2:])
+#device = webapi.get_registered_devices()
+#print device[0]['id'][2:]
+#streamURL = api.get_stream_url(guid, device[0]['id'][2:])
+streamURL = api.get_stream_url(guid, '320b3128904ea650')
 
 if guid != 0:
     #pid = api.create_playlist("Tempo: " + dt.datetime.now().strftime("%m-%d-%Y %I:%M:%S%p"))
     api.add_songs_to_playlist(pid, guid)
     print json.dumps({"streamURL": streamURL, "song": song}, indent=4, separators=(',', ': '))
 else:
-    print json.dumps({"streamURL": streamURL, "song": errSong}, indent=4, separators=(',', ': '))
+    print json.dumps({"streamURL": streamURL, "song": errSong, "error": "true"}, indent=4, separators=(',', ': '))
