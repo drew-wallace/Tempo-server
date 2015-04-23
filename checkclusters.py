@@ -26,7 +26,7 @@ for index, value in enumerate(rfcTitle.values):
 
 #results = sorted(results, key=itemgetter('cluster'))
 
-clusters = [[],[],[],[],[]]
+clusters = [[],[],[],[],[],[],[],[],[],[]]
 #usedLabels = []
 #ret = {'choices': []}
 for i, v in enumerate(results):

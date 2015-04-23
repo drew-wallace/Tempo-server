@@ -13,6 +13,6 @@ rfcTitle.instrumentalness = rfcTitle.instrumentalness.fillna(rfcTitle.instrument
 rfcTitle = rfcTitle.dropna(subset = filter(lambda x: x != "albumArtRef", rfcTitle.columns))
 rfc = rfcTitle[['energy','tempo','danceability','artist_discovery','speechiness','acousticness','liveness','loudness','time_signature','valence','instrumentalness']]
 
-km = KMeans(5)
+km = KMeans(10)
 km.fit(rfc.values)
 pickle.dump(km, open( "/home/drew/tempo_scripts/10ktempo_model.p", "wb" ))
