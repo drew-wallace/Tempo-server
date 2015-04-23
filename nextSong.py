@@ -56,4 +56,5 @@ if errSong is None:
     api.add_songs_to_playlist(pid, guid)
     print json.dumps({"streamURL": streamURL, "song": song}, indent=4, separators=(',', ': '))
 else:
+    api.add_songs_to_playlist(pid, guid)
     print json.dumps({"streamURL": streamURL, "song": errSong, "error": "true"}, indent=4, separators=(',', ': '))
