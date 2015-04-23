@@ -44,15 +44,14 @@ try:
 	guid = song['id']
 except:
 	#library = api.get_all_songs()
-	errSong = clusters[cluster][random.randint(0, len(clusters[i])-1)]
+	errSong = clusters[cluster][random.randint(0, len(clusters[cluster])-1)]
 	guid = errSong['id']
 
 #device = webapi.get_registered_devices()
 #print device[0]['id'][2:]
 #streamURL = api.get_stream_url(guid, device[0]['id'][2:])
 streamURL = api.get_stream_url(guid, '320b3128904ea650')
-
-if guid != 0:
+if errSong is None:
     #pid = api.create_playlist("Tempo: " + dt.datetime.now().strftime("%m-%d-%Y %I:%M:%S%p"))
     api.add_songs_to_playlist(pid, guid)
     print json.dumps({"streamURL": streamURL, "song": song}, indent=4, separators=(',', ': '))
