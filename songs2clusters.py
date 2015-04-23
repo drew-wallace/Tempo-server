@@ -11,7 +11,7 @@ data = pd.read_csv("/home/drew/gpmusic_fixed.csv")
 rfcTitle = data[['artist','title','energy','tempo','danceability','artist_discovery','speechiness','year','duration','trackType','acousticness','liveness','loudness','time_signature','valence','instrumentalness','id','albumArtRef','storeId']]
 rfcTitle.instrumentalness = rfcTitle.instrumentalness.fillna(rfcTitle.instrumentalness.mean())
 rfcTitle = rfcTitle.dropna(subset = filter(lambda x: x != "albumArtRef", rfcTitle.columns))
-rfc = rfcTitle[['energy','tempo','danceability','artist_discovery','speechiness','acousticness','liveness','loudness','time_signature','valence','instrumentalness']]
+rfc = rfcTitle[['energy','danceability','artist_discovery','speechiness','acousticness','liveness','loudness','time_signature','valence','instrumentalness']]
 
 km = pickle.load(open("/home/drew/tempo_scripts/10ktempo_model.p", "rb" ))
 klbls = km.predict(rfc.values)

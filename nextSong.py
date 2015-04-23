@@ -40,6 +40,7 @@ for i,v in enumerate(songs):
     if v['id'] not in tids:
 	song = v
 
+errSong = None
 try:
 	guid = song['id']
 except:

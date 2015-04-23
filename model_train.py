@@ -11,7 +11,7 @@ data = pd.read_csv("enmusic.csv")
 rfcTitle = data[['title','energy','tempo','danceability','artist_discovery','speechiness','duration','acousticness','liveness','loudness','time_signature','valence','id','instrumentalness']]
 rfcTitle.instrumentalness = rfcTitle.instrumentalness.fillna(rfcTitle.instrumentalness.mean())
 rfcTitle = rfcTitle.dropna(subset = filter(lambda x: x != "albumArtRef", rfcTitle.columns))
-rfc = rfcTitle[['energy','tempo','danceability','artist_discovery','speechiness','acousticness','liveness','loudness','time_signature','valence','instrumentalness']]
+rfc = rfcTitle[['energy','danceability','artist_discovery','speechiness','acousticness','liveness','loudness','time_signature','valence','instrumentalness']]
 
 km = KMeans(10)
 km.fit(rfc.values)
