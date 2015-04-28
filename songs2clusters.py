@@ -1,5 +1,5 @@
 import pandas as pd
-import pickle, sys
+import pickle, sys, math
 from sklearn.cluster import KMeans
 pd.options.mode.chained_assignment = None
 
@@ -21,7 +21,7 @@ rfcTitle['label'] = klbls
 results = []
 
 for index, value in enumerate(rfcTitle.values):
-    results.append({'artist': value[0], 'title': value[1], 'energy': value[2], 'tempo': value[3], 'danceability': value[4], 'artist_discovery': value[5], 'speechiness': value[6], 'year': value[7], 'duration': value[8], 'trackType': value[9], 'acousticness': value[10], 'liveness': value[11], 'loudness': value[12], 'time_signature': value[13], 'valence': value[14], 'instrumentalness': value[15], 'cluster': value[19], 'id': value[16], 'albumArtRef': value[17], 'storeId': value[18]})
+    results.append({'artist': value[0], 'title': value[1], 'energy': value[2], 'tempo': value[3], 'danceability': value[4], 'artist_discovery': value[5], 'speechiness': value[6], 'year': value[7], 'duration': value[8], 'trackType': value[9], 'acousticness': value[10], 'liveness': value[11], 'loudness': value[12], 'time_signature': value[13], 'valence': value[14], 'instrumentalness': value[15], 'cluster': value[19], 'id': value[16], 'albumArtRef': "none" if type(value[17]) is float else value[17], 'storeId': value[18]})
 
 #results = sorted(results, key=itemgetter('cluster'))
 
